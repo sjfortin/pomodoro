@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+</head>
+
+<body>
+  <section class="hero is-dark is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Pomodoro</h1>
+        <h2 class="subtitle">
+          Get yr romantic mind right and focused.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="content">
+            <h2>Session Length</h2>
+            <div><span class="icon is-small" id="session-decrease"><i class="fa fa-minus"></i></span><span id="session-time"></span><span class="icon is-small" id="session-increase"><i class="fa fa-plus"></i></span></div>
+            <div class="field">
+              <label class="label">Session Length</label>
+              <div class="control">
+                <div class="select">
+                  <select id="selectSessionLength">
+                    <option value="5">5 minutes</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <h2>Break Length</h2>
+            <div><span class="icon is-small" id="break-decrease"><i class="fa fa-minus"></i></span><span id="break-time"></span><span class="icon is-small" id="break-increase"><i class="fa fa-plus"></i></span></div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <h1>Controls</h1>
+            <span class="icon is-large" id="play"><i class="fa fa-play"></i></span>
+            <span class="icon is-large" id="pause"><i class="fa fa-pause"></i></span>
+            <span class="icon is-large" id="stop"><i class="fa fa-stop"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="column is-half is-offset-one-quarter">
+        <h1 class="subtitle">Session</h1>
+        <h1 class="title" id="session-timer"></h1>
+        <progress class="progress is-large" value="100" max="100">15%</progress>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
