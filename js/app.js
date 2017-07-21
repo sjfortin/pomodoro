@@ -1,26 +1,17 @@
 /*
 To Do:
-1. Change input to an text input field
-    a. Use regex to restrict to numbers
-    b. Add a submit button or if the enter key is pressed
-    c. Stop current session if the submit button is clicked during a session
-2. clearSession function
-3. pauseSession function
-3. Add in breakTime function after startPlaying reaches 0
-4. Update function names.
+1. Change input to a select field
+    a. Add a submit button or if the enter key is pressed
+    b. Stop current session if the submit button is clicked during a session
 5. Reorder functions for ease of reading and organization. Emulate the MVC model
 6. Connect to spotify to play music during pomodoro
     a. Ambient during the model.sessionTime
     b. Beats during the breakTime
+7. Comment Code
 */
 
 // Global Variables
-var sessionLength = document.getElementById('session-time');
-var breakLength = document.getElementById('break-time');
-var sessionIncrease = document.getElementById('session-increase');
-var sessionDecrease = document.getElementById('session-decrease');
-var breakIncrease = document.getElementById('break-increase');
-var breakDecrease = document.getElementById('break-decrease');
+var controls = document.getElementById('controls');
 var play = document.getElementById('play');
 var stop = document.getElementById('stop');
 var pause = document.getElementById('pause');
@@ -29,50 +20,30 @@ var sessionTime = 25 * 60;
 var sessionProgress = sessionTime;
 var breakTime = 5 * 60;
 var breakProgress = breakTime;
+var sessionOrBreakText = document.getElementById('sessionOrBreakText');
+sessionOrBreakText.innerHTML = 'Session';
 var sessionOrBreak = 'session';
 
 var selectSessionLength = document.getElementById("selectSessionLength");
 var selectedSessionLength = selectSessionLength.options[selectSessionLength.selectedIndex].value;
-
-console.log(selectedSessionLength);
-
+var selectBreakLength = document.getElementById("selectBreakLength");
+var selectedBreakLength = selectBreakLength.options[selectBreakLength.selectedIndex].value;
+var submitTime = document.getElementById('submitTime');
 
 var model = {
     sessionSetTime: 25,
     breakSetTime: 5,
     playStatus: 'stopped',
-  updateSessionTime: function(event) {
-    if (this.sessionSetTime === 0) {
-      if (event.target.parentElement.id === 'session-increase') {
-        this.sessionSetTime++;
-      }
-    } else if (this.sessionSetTime > 0) {
-      if (event.target.parentElement.id === 'session-increase') {
-        this.sessionSetTime++;
-      } else if (event.target.parentElement.id === 'session-decrease') {
-        this.sessionSetTime--;
-      }
-    }
+  setSessionTime: function(event) {
+    controls.style.display = '';
+    this.sessionSetTime = selectSessionLength.options[selectSessionLength.selectedIndex].value;
     sessionTime = this.sessionSetTime * 60;
     sessionProgress = this.sessionSetTime * 60;
-    sessionLength.textContent = this.sessionSetTime + ' minutes';
     sessionTimer.textContent = this.sessionSetTime + ' minutes';
-  },
-  updateBreakTime: function(event) {
-    if (this.breakSetTime === 0) {
-      if (event.target.parentElement.id === 'break-increase') {
-        this.breakSetTime++;
-      }
-    } else if (this.breakSetTime > 0) {
-      if (event.target.parentElement.id === 'break-increase') {
-        this.breakSetTime++;
-      } else if (event.target.parentElement.id === 'break-decrease') {
-        this.breakSetTime--;
-      }
-    }
+
+    this.breakSetTime = selectBreakLength.options[selectBreakLength.selectedIndex].value;
     breakTime = this.breakSetTime * 60;
     breakProgress = this.breakSetTime * 60;
-    breakLength.textContent = this.breakSetTime + ' minutes';
   },
   startPlaying: function() {
     if(this.playStatus !== 'playing') {
@@ -101,6 +72,7 @@ var model = {
         } else {
           sessionTimer.innerHTML = sessionMinutes + ' minute, ' + sessionSeconds + ' seconds';
         }
+        sessionOrBreakText.innerHTML = 'Session';
         document.querySelector('.progress').value = (sessionProgress / sessionTime) * 100;
         sessionProgress--;
         window.setTimeout(sessionCountdown, 100);
@@ -124,6 +96,7 @@ var model = {
         } else {
           sessionTimer.innerHTML = breakMinutes + ' minute, ' + breakSeconds + ' seconds';
         }
+        sessionOrBreakText.innerHTML = 'Break';
         document.querySelector('.progress').value = (breakProgress / breakTime) * 100;
         breakProgress--;
         window.setTimeout(breakCountdown, 100);
@@ -144,13 +117,8 @@ var model = {
 
 var view = {
   setUpEventListeners: function() {
-    sessionLength.textContent = model.sessionSetTime + ' minutes';
-    breakLength.textContent = model.breakSetTime + ' minutes';
-    sessionTimer.textContent = model.sessionSetTime + ' minutes, 00 seconds';
-    sessionIncrease.addEventListener('click', model.updateSessionTime.bind(model));
-    sessionDecrease.addEventListener('click', model.updateSessionTime.bind(model));
-    breakIncrease.addEventListener('click', model.updateBreakTime.bind(model));
-    breakDecrease.addEventListener('click', model.updateBreakTime.bind(model));
+    controls.style.display = 'none';
+    submitTime.addEventListener('click', model.setSessionTime.bind(model));
     play.addEventListener('click', model.startPlaying.bind(model));
     stop.addEventListener('click', model.stopPlaying.bind(model));
     pause.addEventListener('click', model.pausePlaying.bind(model));

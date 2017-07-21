@@ -27,43 +27,51 @@
       <div class="columns">
         <div class="column">
           <div class="content">
-            <h2>Session Length</h2>
-            <div><span class="icon is-small" id="session-decrease"><i class="fa fa-minus"></i></span><span id="session-time"></span><span class="icon is-small" id="session-increase"><i class="fa fa-plus"></i></span></div>
             <div class="field">
               <label class="label">Session Length</label>
               <div class="control">
-                <div class="select">
+                <div class="select is-medium">
                   <select id="selectSessionLength">
+                    <option value="1">1 minute</option>
                     <option value="5">5 minutes</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
+                    <option value="10">10 minutes</option>
+                    <option value="15">15 minutes</option>
                   </select>
                 </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Break Length</label>
+              <div class="control">
+                <div class="select is-medium">
+                  <select id="selectBreakLength">
+                    <option value="1">1 minute</option>
+                    <option value="2">2 minutes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" id="submitTime">Submit Time</button>
               </div>
             </div>
           </div>
         </div>
         <div class="column">
           <div class="content">
-            <h2>Break Length</h2>
-            <div><span class="icon is-small" id="break-decrease"><i class="fa fa-minus"></i></span><span id="break-time"></span><span class="icon is-small" id="break-increase"><i class="fa fa-plus"></i></span></div>
+            <div id="controls">
+              <span class="icon is-large" id="play"><i class="fa fa-play"></i></span>
+              <span class="icon is-large" id="pause"><i class="fa fa-pause"></i></span>
+              <span class="icon is-large" id="stop"><i class="fa fa-stop"></i></span>
+            </div>
           </div>
         </div>
         <div class="column">
-          <div class="content">
-            <h1>Controls</h1>
-            <span class="icon is-large" id="play"><i class="fa fa-play"></i></span>
-            <span class="icon is-large" id="pause"><i class="fa fa-pause"></i></span>
-            <span class="icon is-large" id="stop"><i class="fa fa-stop"></i></span>
-          </div>
+          <h1 id="sessionOrBreakText"></h1>
+          <h1 class="title" id="session-timer"></h1>
+          <progress class="progress is-large" value="100" max="100">15%</progress>
         </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="column is-half is-offset-one-quarter">
-        <h1 class="subtitle">Session</h1>
-        <h1 class="title" id="session-timer"></h1>
-        <progress class="progress is-large" value="100" max="100">15%</progress>
       </div>
     </div>
   </section>
