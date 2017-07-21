@@ -1,0 +1,26 @@
+#controls {
+  margin-bottom: 20px;
+}
+.icon.is-large {
+    height: 5rem;
+    width: 5rem;
+}
+.icon.is-large .fa {
+    font-size: 60px;
+}
+
+i.fa {
+    cursor: pointer;
+}
+
+.progress.is-large {
+    height: 2rem;
+}
+
+.active-play-session {
+  color: #3273dc;
+}
+
+.active-play-break {
+  color: #ffdd57;
+}
