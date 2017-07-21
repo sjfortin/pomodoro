@@ -77,7 +77,7 @@ var model = {
         progressBar.classList.add('is-info');
         play.classList.add('active-play-session');
         sessionProgress--;
-        window.setTimeout(sessionCountdown, 100);
+        window.setTimeout(sessionCountdown, 1000);
       }
     }
 
@@ -104,7 +104,7 @@ var model = {
         progressBar.classList.add('is-warning');
         play.classList.add('active-play-break');
         breakProgress--;
-        window.setTimeout(breakCountdown, 100);
+        window.setTimeout(breakCountdown, 1000);
       }
     }
   },
